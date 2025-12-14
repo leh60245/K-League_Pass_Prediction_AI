@@ -1,0 +1,16 @@
+column,dtype,non_null,missing_pct,unique
+game_id,int64,356721,0.0,198
+period_id,int64,356721,0.0,2
+episode_id,int64,356721,0.0,129
+time_seconds,float64,356721,0.0,218636
+team_id,int64,356721,0.0,12
+player_id,int64,356721,0.0,446
+action_id,int64,356721,0.0,3495
+type_name,object,356721,0.0,26
+result_name,object,216467,39.32,8
+start_x,float64,356721,0.0,266035
+start_y,float64,356721,0.0,266931
+end_x,float64,356721,0.0,277789
+end_y,float64,356721,0.0,282540
+is_home,bool,356721,0.0,2
+game_episode,object,356721,0.0,15435

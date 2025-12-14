@@ -1,0 +1,27 @@
+type_name,count
+Pass,178582
+Carry,82046
+Recovery,27352
+Interception,11088
+Duel,8734
+Tackle,8138
+Throw-In,6801
+Clearance,6563
+Intervention,6038
+Block,3983
+Pass_Freekick,3824
+Cross,3589
+Goal Kick,2713
+Error,1647
+Shot,1413
+Pass_Corner,1137
+Catch,1019
+Take-On,987
+Aerial Clearance,478
+Parry,373
+Hit,130
+Shot_Freekick,43
+Foul,26
+Deflection,14
+Penalty Kick,2
+Handball_Foul,1

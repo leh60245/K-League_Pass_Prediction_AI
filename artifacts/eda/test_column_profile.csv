@@ -1,0 +1,4 @@
+column,dtype,non_null,missing_pct,unique
+game_id,int64,2414,0.0,30
+game_episode,object,2414,0.0,2414
+path,object,2414,0.0,2414

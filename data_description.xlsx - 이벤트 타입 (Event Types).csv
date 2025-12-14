@@ -1,0 +1,63 @@
+type_name,result_name,Description
+Aerial Clearance,Successful,골키퍼가 공중볼을 처리(방향 변경 또는 캐치)하는 데 성공
+Aerial Clearance,Unsuccessful,골키퍼가 공중볼 처리(방향 변경 또는 캐치)에 실패
+Block,NaN,"선수가 상대방의 패스, 크로스, 슛을 막는 수비 행동"
+Carry,NaN,선수가 공을 몰고 이동하는 행동
+Catch,NaN,골키퍼가 슛을 막고 공을 소유(캐치)하는 세이브
+Clearance,NaN,수비수가 의도 없이 공을 멀리 걷어내는 수비 행동
+Cross,Unsuccessful,측면에서 중앙으로 투입한 패스가 팀 동료에게 닿지 못함
+Cross,Successful,측면에서 중앙으로 투입한 패스가 팀 동료에게 성공적으로 닿음
+Deflection,NaN,슛이 필드 플레이어 몸에 맞고 방향이 바뀌는 것
+Duel,Successful,"선수가 공중, 지상, 루즈볼 경합에서 승리함"
+Duel,Unsuccessful,"선수가 공중, 지상, 루즈볼 경합에서 패배함"
+Error,NaN,선수가 압박 없는 상황에서 실수하여 소유권을 넘겨주거나 기회를 허용
+Foul,NaN,파울을 저질렀으나 카드를 받지 않음
+Foul,Yellow_Card,파울로 인해 옐로 카드를 받음
+Foul,Direct_Red_Card,파울로 인해 다이렉트 레드 카드를 받음
+Foul,Second_Yellow_Card,옐로 카드 누적으로 레드 카드를 받음
+Foul_Throw,NaN,스로인 반칙으로 소유권이 넘어감
+Goal,NaN,"득점 (공이 골 라인을 넘어감, 자책골 제외)"
+Goal Kick,Successful,골킥이 성공적으로 팀 동료에게 연결됨
+Goal Kick,Unsuccessful,골킥이 팀 동료에게 연결되지 못함
+Handball_Foul,NaN,핸드볼 파울을 저질렀으나 카드를 받지 않음
+Handball_Foul,Yellow_Card,핸드볼 파울로 인해 옐로 카드를 받음
+Handball_Foul,Second_Yellow_Card,핸드볼 파울로 인해 다이렉트 레드 카드를 받음
+Handball_Foul,Direct_Red_Card,선수가 의도적으로 손/팔로 공을 터치하여 파울이 선언됨
+Hit,NaN,선수가 의도치 않게 공에 맞아 소유권에 영향을 줌
+Interception,NaN,선수가 상대방의 패스 경로로 이동하여 공을 가로채 소유권을 획득
+Intervention,NaN,선수가 상대의 소유권을 방해(터치)하여 루즈볼 상황을 만듦 (소유권 획득X)
+Offside,NaN,오프사이드 반칙이 선언됨
+Out,NaN,"공이 경기장 라인 밖으로 나간 상태 (스로인, 골킥, 코너킥으로 이어짐)"
+Own Goal,NaN,자책골 (공격수의 슛이 원래 빗나갔으나 수비수 맞고 들어간 경우 등)
+Parry,NaN,골키퍼가 슛을 쳐내어 막았으나 소유(캐치)하지는 못한 세이브
+Pass,Successful,선수가 팀 동료에게 공을 성공적으로 패스
+Pass,Unsuccessful,선수가 팀 동료에게 패스를 시도했으나 실패
+Pass_Corner,Unsuccessful,코너킥 상황에서의 패스가 실패
+Pass_Corner,Successful,코너킥 상황에서의 패스가 성공
+Pass_Freekick,Successful,프리킥 상황에서의 패스가 성공
+Pass_Freekick,Unsuccessful,프리킥 상황에서의 패스가 실패
+Penalty Kick,Goal,페널티킥이 득점으로 연결됨
+Penalty Kick,On Target,페널티킥이 유효슈팅이었으나 골키퍼에게 막힘
+Penalty Kick,Off Target,페널티킥이 골문을 벗어남 (골대 강타 포함)
+Penalty Kick,NaN,
+Recovery,NaN,선수가 소유권이 없는 공(루즈볼)을 다시 획득
+Shot,Off Target,골문을 벗어난 슛 (골대 강타 포함)
+Shot,On Target,골키퍼나 수비수가 막지 않았다면 득점이 되었을 슛 (유효슈팅)
+Shot,Blocked,골문으로 향하는 슛이 (골키퍼 외) 상대 선수에게 막힘
+Shot,Goal,슛이 득점으로 연결됨
+Shot,Low Quality Shot,"18야드 박스보다 넓고 크로스바 2배보다 높은, 품질 낮은 슛"
+Shot,Keeper Rush-Out,1대1 상황 등 골키퍼가 달려 나올 때 시도한 슛
+Shot,NaN,
+Shot_Corner,Goal,코너킥이 바로 득점으로 연결됨
+Shot_Freekick,Off Target,프리킥 슛이 골문을 벗어남 (골대 강타 포함)
+Shot_Freekick,Blocked,프리킥 슛이 상대 선수에게 막힘
+Shot_Freekick,On Target,프리킥 슛이 유효슈팅이었으나 골키퍼에게 막힘
+Shot_Freekick,Goal,프리킥 슛이 득점으로 연결됨
+Shot_Freekick,Low Quality Shot,프리킥 상황에서 시도한 품질 낮은 슛
+Tackle,Unsuccessful,태클을 시도했으나 상대가 소유권을 유지함
+Tackle,Successful,선수가 태클로 상대의 공을 빼앗거나 루즈볼을 만듦
+Take-On,Unsuccessful,"선수가 1v1 드리블 돌파에 실패하거나, 돌파 후 공을 잃음"
+Take-On,Successful,선수가 1v1 드리블 돌파에 성공하고 공의 소유권을 유지
+Throw-In,Successful,스로인이 성공적으로 팀 동료에게 연결됨
+Throw-In,Unsuccessful,스로인이 팀 동료에게 연결되지 못함
+Throw-In,NaN,

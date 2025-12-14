@@ -1,0 +1,43 @@
+type_name,result_name,count
+Aerial Clearance,Successful,453
+Aerial Clearance,Unsuccessful,25
+Block,,3983
+Carry,,82046
+Catch,,1019
+Clearance,,6563
+Cross,Successful,623
+Cross,Unsuccessful,2966
+Deflection,,14
+Duel,Successful,8731
+Duel,Unsuccessful,3
+Error,,1647
+Foul,Yellow_Card,26
+Goal Kick,Successful,1985
+Goal Kick,Unsuccessful,728
+Handball_Foul,,1
+Hit,,130
+Interception,,11088
+Intervention,,6038
+Parry,,373
+Pass,Successful,154195
+Pass,Unsuccessful,24387
+Pass_Corner,Successful,532
+Pass_Corner,Unsuccessful,605
+Pass_Freekick,Successful,3127
+Pass_Freekick,Unsuccessful,697
+Penalty Kick,Off Target,1
+Penalty Kick,On Target,1
+Recovery,,27352
+Shot,Blocked,617
+Shot,Keeper Rush-Out,12
+Shot,Low Quality Shot,71
+Shot,Off Target,47
+Shot,On Target,666
+Shot_Freekick,Blocked,18
+Shot_Freekick,On Target,25
+Tackle,Successful,2580
+Tackle,Unsuccessful,5558
+Take-On,Successful,333
+Take-On,Unsuccessful,654
+Throw-In,Successful,5978
+Throw-In,Unsuccessful,823
