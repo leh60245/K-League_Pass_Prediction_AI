@@ -1,0 +1,41 @@
+file_name,column_name,description,data_type,notes
+match_info.csv,game_id,경기를 구분하는 고유 ID,object,
+match_info.csv,season_id,시즌 고유 ID,object,"e.g., 2024시즌"
+match_info.csv,competition_id,대회 고유 ID,object,"e.g., K리그1, FA컵"
+match_info.csv,game_day,"리그 경기일 (e.g., 1R, 2R)",int64,'N라운드' 정보
+match_info.csv,game_date,실제 경기 날짜,datetime64[ns],
+match_info.csv,home_team_id,홈 팀의 고유 ID,object,
+match_info.csv,away_team_id,어웨이 팀의 고유 ID,object,
+match_info.csv,home_score,홈 팀의 최종 득점,int64,
+match_info.csv,away_score,어웨이 팀의 최종 득점,int64,
+match_info.csv,venue,경기장 이름,object,
+match_info.csv,competition_name,대회 이름 (영문),object,
+match_info.csv,country_name,리그 국가 이름,object,
+match_info.csv,season_name,시즌 이름,object,"e.g., '2024'"
+match_info.csv,home_team_name,홈 팀 이름 (영문),object,
+match_info.csv,home_team_name_ko,홈 팀 이름 (한글),object,
+match_info.csv,away_team_name,어웨이 팀 이름 (영문),object,
+match_info.csv,away_team_name_ko,어웨이 팀 이름 (한글),object,
+"train.csv, test",game_id,경기를 구분하는 고유 ID,int64,
+"train.csv, test",period_id,"전/후반 구분 (1: 전반, 2: 후반...)",int64,1부터 시작
+"train.csv, test",episode_id,공이 라인밖을 나가기 전까지 진행된 플레이의 단위 ID,int64,1부터 시작
+"train.csv, test",time_seconds,Period 시작 후 지난 시간 (초),float64,"action_id와 time_seconds 순서가 불일치할 수 있음
+- 내부 데이터 처리 로직에 의해 거의 동시에 발생하는 이벤트의 경우 처리 순서가 바뀔 가능성이 있음
+- 단, 에피소드 내 마지막 이벤트(예측)와 에피소드와 에피소드 간의 시간적 일관성은 반드시 유지됨"
+"train.csv, test",team_id,이벤트를 수행한 팀 ID,int64,
+"train.csv, test",player_id,이벤트를 수행한 선수 ID,float64,"action_id와 time_seconds 순서가 불일치할 수 있음
+- 내부 데이터 처리 로직에 의해 거의 동시에 발생하는 이벤트의 경우 처리 순서가 바뀔 가능성이 있음
+- 단, 에피소드 내 마지막 이벤트(예측)와 에피소드와 에피소드 간의 시간적 일관성은 반드시 유지됨"
+"train.csv, test",action_id,경기 내 이벤트 순서,int64,"0부터 시작, 일부 이벤트 삭제"
+"train.csv, test",type_name,이벤트의 종류,object,이벤트_타입 시트 참고
+"train.csv, test",result_name,이벤트의 성공/실패 여부,object,이벤트_타입 시트 참고
+"train.csv, test",start_x,이벤트 시작 X좌표 (L->R 공격 통일),float64,"1) 피파 공식 권장 경기장 규격인 105 x 68 크기의 그리드에 매핑한 상대 좌표 값
+2) (L→R 공격 통일)이라는 표현은, 실제 경기에서 전/후반 팀의 공격 방향이 바뀌더라도, 모든 이벤트 데이터가 좌우, 상하 반전되어 항상 왼쪽(x=0)에서 오른쪽(x=105)으로 공격하는 것을 기준으로 좌표를 기록했다는 의미"
+"train.csv, test",start_y,이벤트 시작 Y좌표 (L->R 공격 통일),float64,"1) 피파 공식 권장 경기장 규격인 105 x 68 크기의 그리드에 매핑한 상대 좌표 값
+2) (L→R 공격 통일)이라는 표현은, 실제 경기에서 전/후반 팀의 공격 방향이 바뀌더라도, 모든 이벤트 데이터가 좌우, 상하 반전되어 항상 왼쪽(x=0)에서 오른쪽(x=105)으로 공격하는 것을 기준으로 좌표를 기록했다는 의미"
+"train.csv, test",end_x,이벤트 종료 X좌표 (L->R 공격 통일),float64,"1) 피파 공식 권장 경기장 규격인 105 x 68 크기의 그리드에 매핑한 상대 좌표 값
+2) (L→R 공격 통일)이라는 표현은, 실제 경기에서 전/후반 팀의 공격 방향이 바뀌더라도, 모든 이벤트 데이터가 좌우, 상하 반전되어 항상 왼쪽(x=0)에서 오른쪽(x=105)으로 공격하는 것을 기준으로 좌표를 기록했다는 의미"
+"train.csv, test",end_y,이벤트 종료 Y좌표 (L->R 공격 통일),float64,"1) 피파 공식 권장 경기장 규격인 105 x 68 크기의 그리드에 매핑한 상대 좌표 값
+2) (L→R 공격 통일)이라는 표현은, 실제 경기에서 전/후반 팀의 공격 방향이 바뀌더라도, 모든 이벤트 데이터가 좌우, 상하 반전되어 항상 왼쪽(x=0)에서 오른쪽(x=105)으로 공격하는 것을 기준으로 좌표를 기록했다는 의미"
+"train.csv, test",is_home,이벤트 수행팀이 홈 팀인지 여부,bool,
+"train.csv, test",game_episode,{game_id}_{episode_id} 형식의 고유그룹  ID,object,
