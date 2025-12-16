@@ -1,0 +1,13 @@
+모델: ensemble
+생성 시간: 20251216_021350
+예측 개수: 2414
+평균 end_x: 84.28
+평균 end_y: 34.02
+end_x 범위: [67.48, 105.39]
+end_y 범위: [9.56, 58.52]
+
+메타데이터:
+  model_name: ensemble
+  timestamp: 20251216_021350
+  n_predictions: 2414
+  ensemble_weights: [np.float64(0.2), np.float64(0.8)]

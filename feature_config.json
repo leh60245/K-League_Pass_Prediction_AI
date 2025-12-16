@@ -1,0 +1,215 @@
+{
+  "version": "2.0",
+  "created_at": "2025-12-16T02:02:49.654164",
+  "feature_columns": [
+    "start_x",
+    "start_y",
+    "delta_x",
+    "delta_y",
+    "distance",
+    "start_x_norm",
+    "start_y_norm",
+    "distance_to_goal_start",
+    "distance_to_goal_end",
+    "goal_approach",
+    "shooting_angle",
+    "start_x_zone",
+    "start_y_zone",
+    "start_x_zone_fine",
+    "in_penalty_area",
+    "in_final_third",
+    "episode_length",
+    "event_order",
+    "x_progression",
+    "x_total_progression",
+    "relative_time",
+    "tempo",
+    "velocity",
+    "velocity_x",
+    "velocity_y",
+    "acceleration",
+    "tempo_change",
+    "direction_consistency",
+    "horizontal_vertical_ratio",
+    "final_third_time_ratio",
+    "event_density",
+    "local_pressure",
+    "weighted_pressure",
+    "distance_change_rate",
+    "vertical_spread",
+    "attack_width",
+    "forward_momentum",
+    "pass_angle_change",
+    "avg_velocity_3",
+    "goal_approach_trend",
+    "path_efficiency",
+    "dist_from_team_center",
+    "match_phase",
+    "type_name_encoded",
+    "prev_type_name_encoded",
+    "prev_start_x",
+    "prev_start_y",
+    "prev_end_x",
+    "prev_end_y",
+    "prev2_type_name_encoded",
+    "period_id",
+    "is_home",
+    "result_name_encoded",
+    "prev_result_name_encoded"
+  ],
+  "target_columns": [
+    "end_x",
+    "end_y"
+  ],
+  "categorical_features": [
+    "start_x_zone",
+    "start_y_zone",
+    "start_x_zone_fine",
+    "type_name_encoded",
+    "prev_type_name_encoded",
+    "prev2_type_name_encoded",
+    "period_id",
+    "is_home",
+    "result_name_encoded",
+    "prev_result_name_encoded"
+  ],
+  "numerical_features": [
+    "start_x",
+    "start_y",
+    "delta_x",
+    "delta_y",
+    "distance",
+    "start_x_norm",
+    "start_y_norm",
+    "distance_to_goal_start",
+    "distance_to_goal_end",
+    "goal_approach",
+    "shooting_angle",
+    "in_penalty_area",
+    "in_final_third",
+    "episode_length",
+    "event_order",
+    "x_progression",
+    "x_total_progression",
+    "relative_time",
+    "tempo",
+    "velocity",
+    "velocity_x",
+    "velocity_y",
+    "acceleration",
+    "tempo_change",
+    "direction_consistency",
+    "horizontal_vertical_ratio",
+    "final_third_time_ratio",
+    "event_density",
+    "local_pressure",
+    "weighted_pressure",
+    "distance_change_rate",
+    "vertical_spread",
+    "attack_width",
+    "forward_momentum",
+    "pass_angle_change",
+    "avg_velocity_3",
+    "goal_approach_trend",
+    "path_efficiency",
+    "dist_from_team_center",
+    "match_phase",
+    "prev_start_x",
+    "prev_start_y",
+    "prev_end_x",
+    "prev_end_y"
+  ],
+  "feature_groups": {
+    "basic_spatial": [
+      "start_x",
+      "start_y",
+      "delta_x",
+      "delta_y",
+      "distance",
+      "start_x_norm",
+      "start_y_norm"
+    ],
+    "goal_related": [
+      "distance_to_goal_start",
+      "distance_to_goal_end",
+      "goal_approach",
+      "shooting_angle"
+    ],
+    "zone_features": [
+      "start_x_zone",
+      "start_y_zone",
+      "start_x_zone_fine",
+      "in_penalty_area",
+      "in_final_third"
+    ],
+    "velocity_acceleration": [
+      "velocity",
+      "velocity_x",
+      "velocity_y",
+      "acceleration"
+    ],
+    "pressure": [
+      "event_density",
+      "local_pressure",
+      "weighted_pressure"
+    ],
+    "space_creation": [
+      "distance_change_rate",
+      "vertical_spread",
+      "attack_width"
+    ],
+    "direction": [
+      "direction_consistency",
+      "pass_angle_change",
+      "horizontal_vertical_ratio"
+    ],
+    "tempo": [
+      "tempo",
+      "tempo_change",
+      "match_phase"
+    ],
+    "path_efficiency": [
+      "path_efficiency",
+      "forward_momentum"
+    ],
+    "positioning": [
+      "dist_from_team_center",
+      "final_third_time_ratio"
+    ],
+    "history": [
+      "avg_velocity_3",
+      "goal_approach_trend"
+    ],
+    "episode_info": [
+      "episode_length",
+      "event_order",
+      "x_progression",
+      "x_total_progression",
+      "relative_time"
+    ],
+    "event_type": [
+      "type_name_encoded"
+    ],
+    "previous_events": [
+      "prev_type_name_encoded",
+      "prev_start_x",
+      "prev_start_y",
+      "prev_end_x",
+      "prev_end_y",
+      "prev2_type_name_encoded"
+    ],
+    "match_info": [
+      "period_id",
+      "is_home"
+    ],
+    "result": [
+      "result_name_encoded",
+      "prev_result_name_encoded"
+    ]
+  },
+  "preprocessing_params": {},
+  "n_features": 54,
+  "n_categorical": 10,
+  "n_numerical": 44,
+  "updated_at": "2025-12-16T16:13:12.810512"
+}

@@ -1,0 +1,14 @@
+모델: ensemble_3models
+생성 시간: 20251216_103854
+예측 개수: 2414
+평균 end_x: 83.38
+평균 end_y: 34.04
+end_x 범위: [71.07, 107.60]
+end_y 범위: [4.46, 63.46]
+
+메타데이터:
+  model_name: ensemble_3models
+  timestamp: 20251216_103854
+  n_predictions: 2414
+  val_score: 0.6218752171056164
+  ensemble_weights: {'XGBoost': np.float64(0.1), 'LightGBM': np.float64(0.30000000000000004), 'CatBoost': np.float64(0.6)}

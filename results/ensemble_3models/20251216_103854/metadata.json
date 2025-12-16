@@ -1,0 +1,11 @@
+{
+  "model_name": "ensemble_3models",
+  "timestamp": "20251216_103854",
+  "n_predictions": 2414,
+  "val_score": 0.6218752171056164,
+  "ensemble_weights": {
+    "XGBoost": 0.1,
+    "LightGBM": 0.30000000000000004,
+    "CatBoost": 0.6
+  }
+}

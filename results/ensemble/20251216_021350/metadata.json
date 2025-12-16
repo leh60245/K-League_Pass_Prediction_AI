@@ -1,0 +1,9 @@
+{
+  "model_name": "ensemble",
+  "timestamp": "20251216_021350",
+  "n_predictions": 2414,
+  "ensemble_weights": [
+    0.2,
+    0.8
+  ]
+}
