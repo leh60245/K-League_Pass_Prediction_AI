@@ -1,0 +1,182 @@
+"""
+LightGBM V4.1 - Optuna Best Parameters Training
+Expected Validation: 14.199m
+"""
+
+import pandas as pd
+import numpy as np
+import lightgbm as lgb
+from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import GroupKFold
+import pickle
+import warnings
+warnings.filterwarnings('ignore')
+
+
+def euclidean_distance(y_true, y_pred):
+    distances = np.sqrt((y_true[:, 0] - y_pred[:, 0])**2 +
+                       (y_true[:, 1] - y_pred[:, 1])**2)
+    return distances.mean()
+
+
+def main():
+    print("=" * 80)
+    print("  LightGBM V4.1 - Optuna Best Parameters Training")
+    print("  Expected: 14.199m -> Test 14.0~14.2")
+    print("=" * 80)
+    print()
+
+    # Load data
+    print("Loading data...")
+    data = pd.read_csv('processed_train_data_v5.csv')
+    print(f"Data shape: {data.shape}\n")
+
+    # Prepare features
+    print("Preparing features...")
+    y_train_x = data['target_x'].values
+    y_train_y = data['target_y'].values
+    game_ids = data['game_id'].values
+
+    drop_cols = ['game_episode', 'game_id', 'target_x', 'target_y', 'final_team_id']
+    X_train = data.drop(columns=[c for c in drop_cols if c in data.columns])
+    X_train = X_train.fillna(0)
+
+    for col in X_train.columns:
+        if X_train[col].dtype == 'object':
+            X_train[col] = pd.to_numeric(X_train[col], errors='coerce').fillna(0)
+
+    print(f"Features: {X_train.shape[1]}, Samples: {len(X_train):,}\n")
+
+    # Optuna best parameters
+    print("Applying Optuna best parameters...")
+    params = {
+        'objective': 'regression',
+        'metric': 'rmse',
+        'verbosity': -1,
+        'learning_rate': 0.01389988648190196,
+        'num_leaves': 186,
+        'max_depth': 8,
+        'min_data_in_leaf': 29,
+        'lambda_l1': 0.0539460564176539,
+        'lambda_l2': 2.0076869308427136e-06,
+        'feature_fraction': 0.7521886906472112,
+        'bagging_fraction': 0.859189408696891,
+        'bagging_freq': 2,
+        'min_gain_to_split': 3.490626896293116,
+    }
+
+    print(f"  learning_rate: {params['learning_rate']:.4f}")
+    print(f"  num_leaves: {params['num_leaves']}")
+    print(f"  max_depth: {params['max_depth']}")
+    print(f"  min_data_in_leaf: {params['min_data_in_leaf']}\n")
+
+    # 5-Fold training
+    print("Starting 5-Fold GroupKFold training...\n")
+
+    gkf = GroupKFold(n_splits=5)
+    models_x = []
+    models_y = []
+    fold_scores = []
+
+    for fold, (train_idx, val_idx) in enumerate(gkf.split(X_train, groups=game_ids)):
+        print(f"{'='*60}")
+        print(f"  Fold {fold+1}/5")
+        print(f"{'='*60}")
+
+        X_tr, X_val = X_train.iloc[train_idx], X_train.iloc[val_idx]
+        y_tr_x, y_val_x = y_train_x[train_idx], y_train_x[val_idx]
+        y_tr_y, y_val_y = y_train_y[train_idx], y_train_y[val_idx]
+
+        print(f"Train: {len(X_tr):,}, Val: {len(X_val):,}")
+
+        # Train X model
+        print("Training end_x...")
+        dtrain_x = lgb.Dataset(X_tr, label=y_tr_x)
+        dvalid_x = lgb.Dataset(X_val, label=y_val_x, reference=dtrain_x)
+
+        model_x = lgb.train(
+            params, dtrain_x, num_boost_round=5000,
+            valid_sets=[dtrain_x, dvalid_x],
+            valid_names=['train', 'valid'],
+            callbacks=[lgb.early_stopping(stopping_rounds=150, verbose=False)]
+        )
+        models_x.append(model_x)
+        print(f"  -> {model_x.best_iteration} rounds")
+
+        # Train Y model
+        print("Training end_y...")
+        dtrain_y = lgb.Dataset(X_tr, label=y_tr_y)
+        dvalid_y = lgb.Dataset(X_val, label=y_val_y, reference=dtrain_y)
+
+        model_y = lgb.train(
+            params, dtrain_y, num_boost_round=5000,
+            valid_sets=[dtrain_y, dvalid_y],
+            valid_names=['train', 'valid'],
+            callbacks=[lgb.early_stopping(stopping_rounds=150, verbose=False)]
+        )
+        models_y.append(model_y)
+        print(f"  -> {model_y.best_iteration} rounds")
+
+        # Evaluate
+        pred_x = model_x.predict(X_val, num_iteration=model_x.best_iteration)
+        pred_y = model_y.predict(X_val, num_iteration=model_y.best_iteration)
+
+        eucl_dist = euclidean_distance(
+            np.column_stack([y_val_x, y_val_y]),
+            np.column_stack([pred_x, pred_y])
+        )
+
+        print(f"\nFold {fold+1} Score: {eucl_dist:.4f}m\n")
+        fold_scores.append({'fold': fold+1, 'euclidean': eucl_dist})
+
+    # Summary
+    print("="*80)
+    print("  Results Summary")
+    print("="*80)
+
+    scores_df = pd.DataFrame(fold_scores)
+    mean_eucl = scores_df['euclidean'].mean()
+    std_eucl = scores_df['euclidean'].std()
+
+    print(f"\nMean: {mean_eucl:.4f}m +/- {std_eucl:.4f}m")
+    print("\nFold details:")
+    for _, row in scores_df.iterrows():
+        print(f"  Fold {int(row['fold'])}: {row['euclidean']:.4f}m")
+
+    # Performance comparison
+    print("\n" + "="*80)
+    print("  Performance Comparison")
+    print("="*80)
+
+    v4_baseline = 14.365
+    improvement = v4_baseline - mean_eucl
+
+    print(f"\nV4 (Baseline):  {v4_baseline:.4f}m")
+    print(f"V4.1 (Optuna):  {mean_eucl:.4f}m")
+    print(f"Improvement:    {improvement:.4f}m ({improvement/v4_baseline*100:.2f}%)")
+
+    if mean_eucl < 14.2:
+        print("\nExcellent! Expected Test: 14.0~14.1")
+    elif mean_eucl < 14.3:
+        print("\nGood! Expected Test: 14.1~14.2")
+
+    # Save model
+    print("\nSaving model...")
+    with open('lightgbm_model_v4.1_5fold.pkl', 'wb') as f:
+        pickle.dump({
+            'models_x': models_x,
+            'models_y': models_y,
+            'val_score': mean_eucl,
+            'fold_scores': fold_scores,
+            'params': params
+        }, f)
+    print("Saved: lightgbm_model_v4.1_5fold.pkl")
+
+    print("\n" + "="*80)
+    print("Next: python inference_v4.1_best.py")
+    print("="*80)
+
+
+if __name__ == "__main__":
+    main()
+
