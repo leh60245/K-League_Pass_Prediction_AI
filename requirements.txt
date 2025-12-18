@@ -9,6 +9,11 @@ numpy==2.3.5
 scikit-learn==1.8.0
 xgboost==3.1.2
 
+# Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
+
 # Utilities
 tqdm==4.67.1
 
