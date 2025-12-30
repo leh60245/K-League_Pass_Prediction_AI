@@ -316,8 +316,12 @@ class DataPreprocessorV4:
         else:
             data['team_id_enc'] = data['team_id'].astype(int)
 
+        # is_home을 int로 변환 (boolean → 0/1)
+        if 'is_home' in data.columns:
+            data['is_home'] = data['is_home'].astype(int)
+
         if verbose:
-            print("✅ 인코딩 완료\n")
+            print("✅ 인코딩 완료 (is_home → int 변환 포함)\n")
 
         return data
 
